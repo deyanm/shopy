@@ -1,0 +1,2 @@
+# shopy
+Shopy Android Firebase app with Black Friday feature
