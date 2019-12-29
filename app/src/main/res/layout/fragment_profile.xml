@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/userProfilePic"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/ic_account_circle_black_24dp"
+                android:tint="@color/colorPrimary" />
+
+            <TextView
+                android:id="@+id/nemlabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/userProfilePic"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="10dp"
+                android:text="NEM Public key"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/nemID"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/nemlabel"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="20dp"
+                android:paddingLeft="50dp"
+                android:paddingRight="50dp"
+                android:text="d14bf00e9fb71190bb25e50dbc7ab42d693a8d56bc8e2c9db7a2394351fa9595"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/headerMyPurcahse"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/nemID"
+                android:background="@color/colorLightGray"
+                android:padding="10dp"
+                android:text="@string/mypurchase"
+                android:textColor="@color/darkerGrey"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <RelativeLayout
+                android:id="@+id/checkOutOrderRelative"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_below="@+id/headerMyPurcahse"
+                android:foreground="?android:attr/selectableItemBackgroundBorderless"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/orderConfirmImg"
+                    android:layout_width="55dp"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/orderConfirmImg"
+                    android:paddingLeft="20dp"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/chkoutNotification"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/red_circle"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:text="9"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+
+            <View
+                android:id="@+id/line_below_orderConfirmation"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/checkOutOrderRelative"
+                android:background="@color/colorLightGray" />
+
+            <RelativeLayout
+                android:id="@+id/orderToShipRelative"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_below="@+id/line_below_orderConfirmation"
+                android:foreground="?android:attr/selectableItemBackgroundBorderless"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/orderToShipImg"
+                    android:layout_width="55dp"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/orderToShipImg"
+                    android:paddingLeft="20dp"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/manageOrderNotification"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/red_circle"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:text="9"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+
+            <View
+                android:id="@+id/line_below_orderToShip"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/orderToShipRelative"
+                android:background="@color/colorLightGray" />
+
+            <RelativeLayout
+                android:id="@+id/returnOrderRelative"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_below="@+id/line_below_orderToShip"
+                android:foreground="?android:attr/selectableItemBackgroundBorderless"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/returnOrderImg"
+                    android:layout_width="55dp"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/returnOrderImg"
+                    android:paddingLeft="20dp"
+                    android:textSize="20sp" />
+
+            </RelativeLayout>
+
+            <View
+                android:id="@+id/line_below_purchaseHistory"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/returnOrderRelative"
+                android:background="@color/colorLightGray" />
+
+
+            <TextView
+                android:id="@+id/headerMyProfile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/line_below_purchaseHistory"
+                android:background="@color/colorLightGray"
+                android:padding="10dp"
+                android:text="@string/myprofile"
+                android:textColor="@color/darkerGrey"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <View
+                android:id="@+id/line_below_myProfile"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/headerMyProfile"
+                android:background="@color/colorLightGray" />
+
+            <RelativeLayout
+                android:id="@+id/changePasswordRelative"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_below="@+id/line_below_myProfile"
+                android:foreground="?android:attr/selectableItemBackgroundBorderless"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/changePassImg"
+                    android:layout_width="55dp"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_lock_outline_black_24dp"
+                    android:tint="@color/colorPrimaryDark" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/changePassImg"
+                    android:paddingLeft="20dp"
+                    android:text="@string/changePass"
+                    android:textSize="20sp" />
+            </RelativeLayout>
+
+            <View
+                android:id="@+id/line_below_changePassword"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/changePasswordRelative"
+                android:background="@color/colorLightGray" />
+
+            <RelativeLayout
+                android:id="@+id/logoutRelative"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_below="@+id/line_below_changePassword"
+                android:foreground="?android:attr/selectableItemBackgroundBorderless"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/logoutImg"
+                    android:layout_width="55dp"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_exit_to_app_black_24dp"
+                    android:tint="@color/colorPrimaryDark" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/logoutImg"
+                    android:paddingLeft="20dp"
+                    android:text="@string/logout"
+                    android:textSize="20sp" />
+
+            </RelativeLayout>
+
+            <View
+                android:id="@+id/line_below_logout"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/logoutRelative"
+                android:background="@color/colorLightGray" />
+        </RelativeLayout>
+
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

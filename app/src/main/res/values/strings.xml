@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Shopy</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_cart">Shopping Cart</string>
+    <string name="title_profile">Profile</string>
+    <string name="mypurchase">My Purchase</string>
+    <string name="myprofile">My Profile</string>
+    <string name="logout">Logout</string>
+    <string name="changePass">Change password</string>
+</resources>
