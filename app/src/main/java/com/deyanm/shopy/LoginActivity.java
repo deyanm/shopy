@@ -15,9 +15,9 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.UserProfileChangeRequest;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -102,25 +102,22 @@ public class LoginActivity extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 // Sign in success, update UI with the signed-in user's information
                                 Log.d(TAG, "createUserWithEmail:success");
-                                FirebaseUser user = mAuth.getCurrentUser();
-                                UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
-                                        .setDisplayName(name)
-                                        .build();
-                                user.updateProfile(profileUpdates)
-                                        .addOnCompleteListener(task1 -> {
-                                            if (task1.isSuccessful()) {
-                                                Log.d(TAG, "User profile updated.");
-                                            }
-                                        });
+//                                FirebaseUser user = mAuth.getCurrentUser();
+//                                UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+//                                        .setDisplayName(name)
+//                                        .build();
+//                                user.updateProfile(profileUpdates)
+//                                        .addOnCompleteListener(task1 -> {
+//                                            if (task1.isSuccessful()) {
+//                                                Log.d(TAG, "User profile updated.");
+//                                            }
+//                                        });
                                 Intent intent = new Intent(this, MainActivity.class);
                                 startActivity(intent);
                                 finish();
                             } else {
-                                // If sign in fails, display a message to the user.
-                                Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                                Toast.makeText(this, "Authentication failed.",
-                                        Toast.LENGTH_SHORT).show();
-
+                                Snackbar.make(findViewById(android.R.id.content), task.getException().getLocalizedMessage(), Snackbar.LENGTH_LONG)
+                                        .show();
                             }
                         });
             }
