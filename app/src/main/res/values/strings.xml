@@ -1,11 +1,31 @@
 <resources>
     <string name="app_name">Shopy</string>
     <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
+    <string name="title_category">Category</string>
     <string name="title_cart">Shopping Cart</string>
     <string name="title_profile">Profile</string>
     <string name="mypurchase">My Purchase</string>
     <string name="myprofile">My Profile</string>
+    <string name="see_more">See More</string>
     <string name="logout">Logout</string>
+    <string name="share">Share</string>
+    <string name="comment">Comment</string>
+    <string name="like">Like</string>
     <string name="changePass">Change password</string>
+    <string name="liked">Liked</string>
+    <string name="newArrival">New Arrival</string>
+    <string name="category2">Category</string>
+    <string name="sportTravel">Sports and Travel</string>
+    <string name="fashionAccessories">Fashion Accessories</string>
+    <string name="manFashion">Man Fashion</string>
+    <string name="womenFashion">Women Fashion</string>
+    <string name="electronicAccessories">Electronic Accessories</string>
+    <string name="automotive">Automotive</string>
+    <string name="electronicDevices">Electronic Devices</string>
+    <string name="homeLifestyle">Home and Life-style</string>
+    <string name="homeAppliance">Home Appliance</string>
+    <string name="healthBeauty">Health and Beauty</string>
+    <string name="babyToy">Baby and Toys</string>
+    <string name="groceriesPets">Groceries and Pets</string>
+    <string name="noResult">No Result</string>
 </resources>

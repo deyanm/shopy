@@ -20,33 +20,33 @@
                 android:tint="@color/colorPrimary" />
 
             <TextView
-                android:id="@+id/nemlabel"
+                android:id="@+id/fullName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/userProfilePic"
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="10dp"
-                android:text="NEM Public key"
-                android:textSize="18sp"
+                android:text="name_placeholder"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/nemID"
+                android:id="@+id/nickName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/nemlabel"
+                android:layout_below="@+id/fullName"
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="20dp"
                 android:paddingLeft="50dp"
                 android:paddingRight="50dp"
-                android:text="d14bf00e9fb71190bb25e50dbc7ab42d693a8d56bc8e2c9db7a2394351fa9595"
+                android:text="nickname_placeholder"
                 android:textAlignment="center" />
 
             <TextView
                 android:id="@+id/headerMyPurcahse"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/nemID"
+                android:layout_below="@+id/nickName"
                 android:background="@color/colorLightGray"
                 android:padding="10dp"
                 android:text="@string/mypurchase"

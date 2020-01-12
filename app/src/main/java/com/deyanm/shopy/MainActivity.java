@@ -6,10 +6,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
 
 import com.deyanm.shopy.ui.cart.CartFragment;
 import com.deyanm.shopy.ui.dashboard.DashboardFragment;
@@ -21,10 +17,11 @@ public class MainActivity extends AppCompatActivity {
 
     private FragmentManager fragmentManager;
     private Fragment currentFragment;
+    private BottomNavigationView navView;
 
-    private static final String TAG_FRAGMENT_ONE = "cart_fragment";
+    private static final String TAG_FRAGMENT_ONE = "home_fragment";
     private static final String TAG_FRAGMENT_TWO = "dashboard_fragment";
-    private static final String TAG_FRAGMENT_THREE = "home_fragment";
+    private static final String TAG_FRAGMENT_THREE = "cart_fragment";
     private static final String TAG_FRAGMENT_FOUR = "profile_fragment";
 
     @Override
@@ -33,11 +30,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         fragmentManager = getSupportFragmentManager();
-        BottomNavigationView navView = findViewById(R.id.nav_view);
+        navView = findViewById(R.id.nav_view);
         navView.setOnNavigationItemSelectedListener(menuItem -> {
             Fragment fragment;
             switch (menuItem.getItemId()) {
-                case R.id.navigation_cart:
+                case R.id.navigation_home:
                     fragment = fragmentManager.findFragmentByTag(TAG_FRAGMENT_ONE);
                     if (fragment == null) {
                         fragment = CartFragment.newInstance();
@@ -54,11 +51,11 @@ public class MainActivity extends AppCompatActivity {
                     replaceFragment(fragment, TAG_FRAGMENT_TWO);
 
                     break;
-                case R.id.navigation_home:
+                case R.id.navigation_cart:
 
                     fragment = fragmentManager.findFragmentByTag(TAG_FRAGMENT_THREE);
                     if (fragment == null) {
-                        fragment = HomeFragment.newInstance();
+                        fragment = CartFragment.newInstance();
                     }
                     replaceFragment(fragment, TAG_FRAGMENT_THREE);
 
@@ -75,14 +72,16 @@ public class MainActivity extends AppCompatActivity {
             }
             return true;
         });
+        replaceFragment(HomeFragment.newInstance(), TAG_FRAGMENT_ONE);
+
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
-        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_cart, R.id.navigation_profile)
-                .build();
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-        NavigationUI.setupWithNavController(navView, navController);
+//        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
+//                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_cart, R.id.navigation_profile)
+//                .build();
+//        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+//        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
+//        NavigationUI.setupWithNavController(navView, navController);
     }
 
 
@@ -90,7 +89,8 @@ public class MainActivity extends AppCompatActivity {
         if (!fragment.equals(currentFragment)) {
             fragmentManager
                     .beginTransaction()
-                    .replace(R.id.nav_host_fragment, fragment, tag)
+                    .replace(R.id.fragment_container, fragment, tag)
+                    .addToBackStack(null)
                     .commit();
             currentFragment = fragment;
         }

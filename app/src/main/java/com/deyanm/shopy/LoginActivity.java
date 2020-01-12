@@ -15,16 +15,19 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.deyanm.shopy.ui.model.User;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class LoginActivity extends AppCompatActivity {
 
     private static final String TAG = LoginActivity.class.getSimpleName();
     private FirebaseAuth mAuth;
     private LinearLayout signInLayout, signUpLayout;
-    private EditText logEmailEt, logPassEt, regEmailEt, regNameEt, regPassEt, regRepassEt;
+    private EditText logEmailEt, logPassEt, regEmailEt, regNameEt, regPassEt, regRepassEt, regNickEt;
     private Button displaySignUp, displaySignIn, loginBtn, regBtn;
     private TextView resetPasswordTv;
     private ProgressBar progressBar;
@@ -35,6 +38,9 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         mAuth = FirebaseAuth.getInstance();
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference ref = database.getReference("users/");
 
         initViewWidgets();
         displaySignUp.setOnClickListener(view -> {
@@ -74,13 +80,18 @@ public class LoginActivity extends AppCompatActivity {
             String name = regNameEt.getText().toString();
             String password = regPassEt.getText().toString();
             String rePassword = regRepassEt.getText().toString();
+            String nickname = regNickEt.getText().toString();
 
             if (TextUtils.isEmpty(email)) {
-                Toast.makeText(getApplicationContext(), "Enter Emailfa", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Enter Email", Toast.LENGTH_SHORT).show();
                 return;
             }
             if (TextUtils.isEmpty(name)) {
                 Toast.makeText(getApplicationContext(), "Enter Name", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if (TextUtils.isEmpty(nickname)) {
+                Toast.makeText(getApplicationContext(), "Enter Nickname", Toast.LENGTH_SHORT).show();
                 return;
             }
             if (TextUtils.isEmpty(password)) {
@@ -102,16 +113,11 @@ public class LoginActivity extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 // Sign in success, update UI with the signed-in user's information
                                 Log.d(TAG, "createUserWithEmail:success");
-//                                FirebaseUser user = mAuth.getCurrentUser();
-//                                UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
-//                                        .setDisplayName(name)
-//                                        .build();
-//                                user.updateProfile(profileUpdates)
-//                                        .addOnCompleteListener(task1 -> {
-//                                            if (task1.isSuccessful()) {
-//                                                Log.d(TAG, "User profile updated.");
-//                                            }
-//                                        });
+                                FirebaseUser user = mAuth.getCurrentUser();
+                                User sendUser = new User();
+                                sendUser.setFull_name(name);
+                                sendUser.setNickname(nickname);
+                                ref.child(user.getUid()).setValue(sendUser);
                                 Intent intent = new Intent(this, MainActivity.class);
                                 startActivity(intent);
                                 finish();
@@ -134,6 +140,7 @@ public class LoginActivity extends AppCompatActivity {
         regEmailEt = findViewById(R.id.reg_email_edt);
         regPassEt = findViewById(R.id.reg_pass_edt);
         regRepassEt = findViewById(R.id.reg_repass_edt);
+        regNickEt = findViewById(R.id.reg_nick_edt);
         displaySignUp = findViewById(R.id.signup_btn);
         displaySignIn = findViewById(R.id.displaySignIn_btn);
         loginBtn = findViewById(R.id.login_btn);
@@ -147,6 +154,7 @@ public class LoginActivity extends AppCompatActivity {
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser != null) {
+            Log.d(TAG, currentUser.getUid());
             startActivity(new Intent(this, MainActivity.class));
         }
     }

@@ -29,7 +29,7 @@ public class CartFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         cartViewModel =
                 ViewModelProviders.of(this).get(CartViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_notifications, container, false);
+        View root = inflater.inflate(R.layout.fragment_cart, container, false);
         final TextView textView = root.findViewById(R.id.text_notifications);
         cartViewModel.getText().observe(this, s -> textView.setText(s));
         return root;
