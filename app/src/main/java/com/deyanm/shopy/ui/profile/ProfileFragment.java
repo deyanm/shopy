@@ -80,6 +80,12 @@ public class ProfileFragment extends Fragment {
         mAuth.addAuthStateListener(mAuthListner);
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        mAuth.removeAuthStateListener(mAuthListner);
+    }
+
     private void initViewWidgets(View view) {
         changePass = view.findViewById(R.id.changePasswordRelative);
         logout = view.findViewById(R.id.logoutRelative);

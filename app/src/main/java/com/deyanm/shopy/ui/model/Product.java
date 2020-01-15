@@ -1,8 +1,9 @@
 package com.deyanm.shopy.ui.model;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Product {
+public class Product implements Serializable {
 
     private List<String> availableColors;
     private String name;
@@ -19,8 +20,9 @@ public class Product {
     private int shoppingCartQuantity;
     private int discount;
     private String discountPrice;
+    private int quantity;
 
-    public Product(String name, String shopName, String description, String category, int code, float price, float minPrice, String timeStamp) {
+    public Product(String name, String shopName, String description, String category, int code, float price, float minPrice, int quantity, String timeStamp) {
         this.name = name;
         this.shopName = shopName;
         this.description = description;
@@ -28,6 +30,7 @@ public class Product {
         this.code = code;
         this.price = price;
         this.minPrice = minPrice;
+        this.quantity = quantity;
         this.timeStamp = timeStamp;
     }
 
@@ -162,5 +165,13 @@ public class Product {
 
     public void setMinPrice(float minPrice) {
         this.minPrice = minPrice;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 }

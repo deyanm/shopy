@@ -3,25 +3,25 @@ package com.deyanm.shopy.ui.model;
 import java.util.List;
 
 public class Cart {
-    private List<Product> cartProducts;
+    private List<CartItem> cartItems;
     private String userUId;
 
     public Cart() {
 
     }
 
-    public Cart(List<Product> cartProducts, String userUId) {
-        this.cartProducts = cartProducts;
+    public Cart(List<CartItem> cartItems, String userUId) {
+        this.cartItems = cartItems;
         this.userUId = userUId;
     }
 
 
-    public List<Product> getCartProducts() {
-        return cartProducts;
+    public List<CartItem> getCartItems() {
+        return cartItems;
     }
 
-    public void setCartProducts(List<Product> cartProducts) {
-        this.cartProducts = cartProducts;
+    public void setCartItems(List<CartItem> cartItems) {
+        this.cartItems = cartItems;
     }
 
     public String getUserUId() {

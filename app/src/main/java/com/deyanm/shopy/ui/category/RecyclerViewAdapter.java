@@ -1,4 +1,4 @@
-package com.deyanm.shopy.ui.dashboard;
+package com.deyanm.shopy.ui.category;
 
 import android.content.Context;
 import android.graphics.Paint;
@@ -24,12 +24,14 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     private final boolean big;
 
+    private OnTopRecyclerClick onTopRecyclerClick;
 
-    public RecyclerViewAdapter(List<Product> getDataAdapter, Context context, boolean big) {
+
+    public RecyclerViewAdapter(List<Product> getDataAdapter, Context context, boolean big, OnTopRecyclerClick onTopRecyclerClick) {
         this.productList = getDataAdapter;
         this.context = context;
         this.big = big;
-
+        this.onTopRecyclerClick = onTopRecyclerClick;
     }
 
     @Override
@@ -41,7 +43,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_card_layout_small, parent, false);
         }
 
-        return new ViewHolder(view);
+        ViewHolder viewHolder = new ViewHolder(view);
+        view.setOnClickListener(clicked -> {
+            onTopRecyclerClick.onClick(productList.get(viewHolder.getLayoutPosition()));
+        });
+
+        return viewHolder;
     }
 
     @Override
@@ -52,7 +59,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         DecimalFormat df2 = new DecimalFormat("0.00");
         double formatPrice = product.getPrice();
 
-        Viewholder.itemCardPrice.setText("RM " + df2.format(formatPrice));
+        Viewholder.itemCardPrice.setText(df2.format(formatPrice));
         Viewholder.itemCardPrice.setPaintFlags(Paint.STRIKE_THRU_TEXT_FLAG);
 
         Viewholder.itemCardSeller.setText(product.getShopName());
@@ -68,7 +75,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         if (product.getDiscountPrice() != null) {
             double discountPrice = Double.parseDouble(product.getDiscountPrice());
-            Viewholder.discountedPrice.setText("RM " + df2.format(discountPrice));
+            Viewholder.discountedPrice.setText(df2.format(discountPrice));
         }
 
     }
@@ -97,7 +104,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             itemCardImage = itemView.findViewById(R.id.itemCardImage);
             discountedPrice = itemView.findViewById(R.id.discountedCardPrice);
 
-
         }
     }
 
@@ -112,6 +118,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     public List<Product> getListData() {
         return productList;
+    }
+
+    public interface OnTopRecyclerClick {
+        void onClick(Product product);
     }
 
 }

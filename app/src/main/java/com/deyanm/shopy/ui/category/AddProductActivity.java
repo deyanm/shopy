@@ -1,4 +1,4 @@
-package com.deyanm.shopy.ui.dashboard;
+package com.deyanm.shopy.ui.category;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -28,7 +28,7 @@ public class AddProductActivity extends AppCompatActivity {
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference mDBReference;
     private FirebaseAuth firebaseAuth;
-    private EditText nameEt, descEt, shopEt, codeEt, priceEt, minPrEt;
+    private EditText nameEt, descEt, shopEt, codeEt, priceEt, minPrEt, quantityEt;
     private Spinner spinner;
 
     private String TAG = AddProductActivity.class.getSimpleName();
@@ -38,6 +38,7 @@ public class AddProductActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_product);
+        getSupportActionBar().setTitle("Add new product");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         firebaseAuth = FirebaseAuth.getInstance();
@@ -79,11 +80,12 @@ public class AddProductActivity extends AppCompatActivity {
         shopEt = findViewById(R.id.shop_et);
         minPrEt = findViewById(R.id.min_pr_et);
         spinner = findViewById(R.id.category_la);
+        quantityEt = findViewById(R.id.quantity_et);
     }
 
     public void newPost(View view) {
         String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
-        mDBReference.push().setValue(new Product(nameEt.getText().toString(), shopEt.getText().toString(), descEt.getText().toString(), spinner.getSelectedItem().toString(), Integer.parseInt(codeEt.getText().toString()), Float.parseFloat(priceEt.getText().toString()), Float.parseFloat(minPrEt.getText().toString()), currentDate)).addOnCompleteListener(task -> {
+        mDBReference.push().setValue(new Product(nameEt.getText().toString(), shopEt.getText().toString(), descEt.getText().toString(), spinner.getSelectedItem().toString(), Integer.parseInt(codeEt.getText().toString()), Float.parseFloat(priceEt.getText().toString()), Float.parseFloat(minPrEt.getText().toString()), Integer.parseInt(quantityEt.getText().toString()), currentDate)).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 Log.d(TAG, task.isSuccessful() + "");
                 setResult(RESULT_OK);

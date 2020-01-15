@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".FindActivity"></activity>
-        <activity android:name=".ui.AddPostActivity" />
+        <activity android:name=".AddPostActivity" />
         <activity
             android:name=".LoginActivity"
             android:label="@string/app_name"
@@ -25,7 +25,8 @@
         </activity>
         <activity android:name=".MainActivity" />
         <activity android:name=".ReviewActivity" />
-        <activity android:name=".ui.dashboard.AddProductActivity" />
+        <activity android:name=".ui.category.AddProductActivity" />
+        <activity android:name=".ui.category.ItemDetailActivity" />
     </application>
 
 </manifest>

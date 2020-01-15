@@ -1,6 +1,7 @@
-package com.deyanm.shopy.ui.dashboard;
+package com.deyanm.shopy.ui.category;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.deyanm.shopy.R;
 import com.deyanm.shopy.ui.model.Product;
+import com.deyanm.shopy.util.ActivityUtils;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -29,31 +31,32 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DashboardFragment extends Fragment {
+public class CategoryFragment extends Fragment {
 
-    private static final String TAG = DashboardFragment.class.getSimpleName();
-    private DashboardViewModel dashboardViewModel;
+    private static final String TAG = CategoryFragment.class.getSimpleName();
+    private CategoryViewModel categoryViewModel;
     private DatabaseReference mDBReference;
     private FirebaseAuth firebaseAuth;
     private RecyclerView recyclerViewTop;
     private RecyclerView.Adapter recyclerViewAdapter;
     private ImageView addNewProduct;
     private List<Product> productList;
+    private ProgressDialog progressDialog;
 
-    public static DashboardFragment newInstance() {
+    public static CategoryFragment newInstance() {
 
         Bundle args = new Bundle();
 
-        DashboardFragment fragment = new DashboardFragment();
+        CategoryFragment fragment = new CategoryFragment();
         fragment.setArguments(args);
         return fragment;
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        dashboardViewModel =
-                ViewModelProviders.of(this).get(DashboardViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_dashboard, container, false);
+        categoryViewModel =
+                ViewModelProviders.of(this).get(CategoryViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_category, container, false);
 
         firebaseAuth = FirebaseAuth.getInstance();
         mDBReference = FirebaseDatabase.getInstance().getReference();
@@ -66,21 +69,24 @@ public class DashboardFragment extends Fragment {
         recyclerViewTop.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManagerOfrecyclerViewTop = new LinearLayoutManager(this.getContext(), LinearLayoutManager.HORIZONTAL, false);
         recyclerViewTop.setLayoutManager(layoutManagerOfrecyclerViewTop);
+        progressDialog = ActivityUtils.displayProgressDialog(getContext(), "Loading data...");
 
-        getNewArrivals();
         return root;
     }
 
     @Override
-    public void onPause() {
-        super.onPause();
-        Log.d(TAG, "Paused");
+    public void onStart() {
+        super.onStart();
+        getNewArrivals();
     }
 
     private void getNewArrivals() {
+        progressDialog.show();
         productList.clear();
         if (recyclerViewAdapter == null) {
-            recyclerViewAdapter = new RecyclerViewAdapter(productList, this.getContext(), false);
+            recyclerViewAdapter = new RecyclerViewAdapter(productList, this.getContext(), false, product -> {
+                itemDetailActivity(product);
+            });
             recyclerViewTop.setAdapter(recyclerViewAdapter);
         }
         recyclerViewAdapter.notifyDataSetChanged();
@@ -93,13 +99,21 @@ public class DashboardFragment extends Fragment {
                     productList.add(product);
                 }
                 recyclerViewAdapter.notifyDataSetChanged();
+                progressDialog.dismiss();
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Log.e("The read failed: ", databaseError.getMessage());
+                Log.d("The read failed: ", databaseError.getMessage());
+                progressDialog.dismiss();
             }
         });
+    }
+
+    private void itemDetailActivity(Product product) {
+        Intent intent = new Intent(getActivity(), ItemDetailActivity.class);
+        intent.putExtra("product", product);
+        startActivity(intent);
     }
 
     @Override

@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.deyanm.shopy.R;
-import com.deyanm.shopy.ui.AddPostActivity;
+import com.deyanm.shopy.AddPostActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;

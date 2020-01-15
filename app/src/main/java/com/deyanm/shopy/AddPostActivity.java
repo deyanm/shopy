@@ -1,4 +1,4 @@
-package com.deyanm.shopy.ui;
+package com.deyanm.shopy;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -9,7 +9,6 @@ import android.widget.EditText;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.deyanm.shopy.R;
 import com.deyanm.shopy.ui.home.Post;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;

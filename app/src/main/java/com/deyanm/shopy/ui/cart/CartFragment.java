@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -30,8 +29,8 @@ public class CartFragment extends Fragment {
         cartViewModel =
                 ViewModelProviders.of(this).get(CartViewModel.class);
         View root = inflater.inflate(R.layout.fragment_cart, container, false);
-        final TextView textView = root.findViewById(R.id.text_notifications);
-        cartViewModel.getText().observe(this, s -> textView.setText(s));
+
+
         return root;
     }
 }
