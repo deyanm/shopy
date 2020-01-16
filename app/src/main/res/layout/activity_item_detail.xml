@@ -180,7 +180,6 @@
                     android:textStyle="bold" />
 
                 <TextView
-
                     android:id="@+id/viewPrice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -338,8 +337,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/delivery_rate"
-
-
                     android:layout_alignStart="@+id/delivery_rate"
                     android:layout_toRightOf="@+id/delivery_label"
                     android:paddingLeft="5dp"
@@ -391,7 +388,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignTop="@+id/retailerProfilePic"
-
                     android:layout_toEndOf="@+id/retailerProfilePic"
                     android:layout_toRightOf="@+id/retailerProfilePic"
                     android:paddingLeft="10dp"

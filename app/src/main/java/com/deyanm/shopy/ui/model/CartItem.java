@@ -4,6 +4,10 @@ public class CartItem {
     private Product product;
     private int cartQuantity;
 
+    public CartItem() {
+
+    }
+
     public CartItem(Product product, int cartQuantity) {
         this.product = product;
         this.cartQuantity = cartQuantity;

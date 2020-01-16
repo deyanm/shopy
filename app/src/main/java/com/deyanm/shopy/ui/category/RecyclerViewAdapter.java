@@ -73,10 +73,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             Viewholder.itemCardPrice.setVisibility(View.INVISIBLE);
         }
 
-        if (product.getDiscountPrice() != null) {
-            double discountPrice = Double.parseDouble(product.getDiscountPrice());
-            Viewholder.discountedPrice.setText(df2.format(discountPrice));
-        }
+        double discountPrice = product.getPrice() - (product.getPrice() * (product.getDiscount() / 100.0));
+        Viewholder.discountedPrice.setText(df2.format(discountPrice));
 
     }
 

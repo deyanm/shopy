@@ -24,6 +24,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.DecimalFormat;
+
 public class ItemDetailActivity extends AppCompatActivity {
 
     private static final String TAG = ItemDetailActivity.class.getSimpleName();
@@ -34,6 +36,7 @@ public class ItemDetailActivity extends AppCompatActivity {
     private Button confirmAddToCart, checkoutBut;
     private ImageView itemDetailImage;
     private Product mProduct;
+    private TextView itemName, itemPrice, itemQuantity, discountText, discountedPrice, shopName, shopName2;
     private TextView selectedQty, itemDetailQty, itemDetailPriceText, itemDetailPrice, itemDetailDiscountedPrice, itemDetailDiscountPriceText;
 
     @Override
@@ -53,6 +56,7 @@ public class ItemDetailActivity extends AppCompatActivity {
         addToCartButton.setOnClickListener(v -> {
             createAddToCartDialog();
         });
+        bindData();
     }
 
     @Override
@@ -66,6 +70,14 @@ public class ItemDetailActivity extends AppCompatActivity {
 
     private void initViewWidgets() {
         addToCartButton = findViewById(R.id.addToCartButton);
+        itemPrice = findViewById(R.id.viewPrice);
+        itemName = findViewById(R.id.viewTitle);
+        itemQuantity = findViewById(R.id.quantity_text);
+        discountText = findViewById(R.id.itemDetailPromotion);
+        discountText.bringToFront();
+        discountedPrice = findViewById(R.id.viewDiscountedPrice);
+        shopName = findViewById(R.id.seller_shop);
+        shopName2 = findViewById(R.id.viewShop);
     }
 
     private void createAddToCartDialog() {
@@ -128,6 +140,22 @@ public class ItemDetailActivity extends AppCompatActivity {
             finish();
 
         });
+    }
+
+    private void bindData() {
+        itemName.setText(mProduct.getName());
+        itemPrice.setText(String.valueOf(mProduct.getPrice()));
+        itemPrice.setPaintFlags(Paint.STRIKE_THRU_TEXT_FLAG);
+        if (mProduct.getDiscount() == 0) {
+            discountText.setVisibility(View.GONE);
+            itemPrice.setVisibility(View.GONE);
+        }
+        double discountPrice = mProduct.getPrice() - (mProduct.getPrice() * (mProduct.getDiscount() / 100.0));
+        DecimalFormat df2 = new DecimalFormat("0.00");
+        discountedPrice.setText("$" + df2.format(discountPrice));
+        itemQuantity.setText(Integer.toString(mProduct.getQuantity()) + " units");
+        shopName.setText(mProduct.getShopName());
+        shopName2.setText(mProduct.getShopName());
     }
 
     private void addToCart() {

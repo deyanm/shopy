@@ -27,8 +27,8 @@
 
             <View
                 android:id="@+id/cartVerticalLine"
-                android:layout_width="2dip"
-                android:layout_height="fill_parent"
+                android:layout_width="2dp"
+                android:layout_height="match_parent"
                 android:layout_toRightOf="@+id/cartChkBox"
                 android:background="@color/colorLightGray" />
 
@@ -177,9 +177,9 @@
                     android:textSize="18sp" />
 
                 <TextView
-                    android:id="@+id/cartQty"
+                    android:id="@+id/cartQuantity"
                     android:layout_width="0dp"
-                    android:layout_height="fill_parent"
+                    android:layout_height="match_parent"
                     android:layout_marginTop="10dp"
                     android:layout_weight="1"
                     android:text="1"
@@ -190,7 +190,7 @@
                 <Button
                     android:id="@+id/cartIncQty"
                     android:layout_width="0dp"
-                    android:layout_height="fill_parent"
+                    android:layout_height="match_parent"
                     android:layout_marginRight="20dp"
                     android:layout_weight="1"
                     android:text="+"
